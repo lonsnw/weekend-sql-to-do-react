@@ -6,7 +6,8 @@ function App () {
   const [task, setTask] = useState('');
   const [completion, setCompletion] = ('');
   const [toDoArray, setToDoArray] = useState([]);
-// TO DO: GET to call tasks
+  
+  // TO DO: GET to call tasks
   const fetchTasks = () => {
     axios.get('/api/todo').then((response) => {
       console.log('Data:', response.data);
@@ -16,16 +17,17 @@ function App () {
       alert('Something went wrong loading your tasks!')
     });
   }
-// TO DO: on load, call fetchTasks() function
-useEffect(() => {
-  fetchTasks();
-}, []);
-  
-// TO DO: POST to add task to database
-  const addTask = (e) => {
-    e.preventDefault();
+  // TO DO: on load, call fetchTasks() function
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+    
+  const addTask = (evt) => {
+    evt.preventDefault();
     console.log(`This is your new task: ${task}; its completion status is ${completion}`);
-    axios.post('/ap/todo', dataToSend).then((response) => {
+    // TO DO: POST to add task to database
+    const dataToSend = { task: task, completion: completion };
+    axios.post('/api/todo', dataToSend).then((response) => {
       fetchTasks();
       // also clear fields
       setTask('');
@@ -51,10 +53,10 @@ useEffect(() => {
       </p>
       {/* TO DO: list of tasks with task completion update (checkbox?) and delete button for removing */}
       {toDoArray.map((item) => {
-        return <div>
-          <div key={item.id} className="task">{item.task}</div> 
-          <div key={item.id} className="completion"> {item.completion}</div>
-          <div key={item.id}><button onClick={deleteTask}>Delete</button></div>
+        return <div key={item.id}>
+          <div className="completion"> {item.completion}</div>
+          <div className="task">{item.task}</div> 
+          {/* <div key={item.id}><button onClick={deleteTask}>Delete</button></div> */}
         </div>
       })
       }
