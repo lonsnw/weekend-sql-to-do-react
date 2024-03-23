@@ -22,16 +22,39 @@ useEffect(() => {
 }, []);
   
 // TO DO: POST to add task to database
-// also clear fields
+  const addTask = (e) => {
+    e.preventDefault();
+    console.log(`This is your new task: ${task}; its completion status is ${completion}`);
+    axios.post('/ap/todo', dataToSend).then((response) => {
+      fetchTasks();
+      // also clear fields
+      setTask('');
+      setCompletion('');
+    }).catch((error) => {
+      console.error(error);
+      alert('Something went wrong saving your new task!');
+    })
+  }
+
   return (
     <div>
       <h1>TO DO APP</h1>
       {/* TO DO: form for inputting tasks */}
+      <form onSubmit={addTask}>
+        <label htmlFor="task-input">Task:</label>
+        <input id="task-input" value={task} onChange={e => setTask(e.target.value)} />
+        <label htmlFor="completion-input">Complete?</label>
+        <input id="completion-input" value={completion} onChange={e => setCompletion(e.target.value)} />
+      </form>
+      <p>
+        New task: {task}
+      </p>
       {/* TO DO: list of tasks with task completion update (checkbox?) and delete button for removing */}
       {toDoArray.map((item) => {
         return <div>
           <div key={item.id} className="task">{item.task}</div> 
           <div key={item.id} className="completion"> {item.completion}</div>
+          <div key={item.id}><button onClick={deleteTask}>Delete</button></div>
         </div>
       })
       }
