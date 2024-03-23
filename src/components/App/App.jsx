@@ -28,12 +28,13 @@ useEffect(() => {
       <h1>TO DO APP</h1>
       {/* TO DO: form for inputting tasks */}
       {/* TO DO: list of tasks with task completion update (checkbox?) and delete button for removing */}
-      <ul>
       {toDoArray.map((item) => {
-        return <div key={item.id}>{item.task} | {item.completion}</div>
+        return <div>
+          <div key={item.id} className="task">{item.task}</div> 
+          <div key={item.id} className="completion"> {item.completion}</div>
+        </div>
       })
       }
-      </ul>
     </div>
   );
 
