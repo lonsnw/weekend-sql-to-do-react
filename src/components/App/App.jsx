@@ -38,6 +38,15 @@ function App () {
     })
   }
 
+  const deleteTask = (taskId) => {
+    axios.delete(`/api/todo/${taskId}`).then((response) => {
+      fetchTasks();
+    }).catch((error) => {
+      console.error('Error in DELETE', error);
+      alert('Something went wrong deleting your task');
+    });
+  }
+
   return (
     <div>
       <h1>TO DO APP</h1>
@@ -56,7 +65,7 @@ function App () {
         return <div key={item.id}>
           <div className="completion"> {item.completion}</div>
           <div className="task">{item.task}</div> 
-          {/* <div key={item.id}><button onClick={deleteTask}>Delete</button></div> */}
+          <div><button onClick={deleteTask}>Delete</button></div>
         </div>
       })
       }
