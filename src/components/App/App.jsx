@@ -49,6 +49,14 @@ function App () {
   }
 
   // TO DO: Update a task's status
+  const updateTask = (taskId) => {
+    axios.put(`/api/todo/${taskID}`).then((response) => {
+      fetchTasks();
+    }).catch((error) => {
+      console.error('Error in PUT', error);
+      alert('Something went wrong updating your task');
+    });
+  }
 
   return (
     <div>
@@ -64,26 +72,16 @@ function App () {
       <p>
         New task: {task}
       </p>
-      <Table>
-          <Table.Head>
-            <Table.HeadCell>Complete?</Table.HeadCell>
-            <Table.HeadCell>Task</Table.HeadCell>
-            <Table.HeadCell>Delete</Table.HeadCell>
-          </Table.Head>
-          <Table.Body>
-          {/* TO DO: list of tasks with task completion update (checkbox?) and delete button for removing */}
-          {toDoArray.map((item) => { 
-            return <Table.Row key={item.id}>
-              <Table.Cell className="completion"> {item.completion}</Table.Cell>
-              <Table.Cell className="task">{item.task}</Table.Cell> 
-              {/* Got help on how to do the button here: https://react.school/ui/button */}
-              <Table.Cell><button onClick={() => deleteTask(item.id)}>Delete</button></Table.Cell>
-            </Table.Row>
-            })
-            }
-          </Table.Body>
-
-      </Table>
+      {/* TO DO: list of tasks with task completion update (checkbox?) and delete button for removing */}
+      {toDoArray.map((item) => {
+        return <tr key={item.id}>
+          <td className="completion"> {item.completion}</td>
+          <td className="task">{item.task}</td> 
+          {/* Got help on how to do the button here: https://react.school/ui/button */}
+          <td><button onClick={() => deleteTask(item.id)}>Delete</button></td>
+        </tr>
+      })
+      }
     </div>
   );
 
