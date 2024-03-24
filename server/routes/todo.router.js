@@ -5,7 +5,8 @@ const pool = require('../modules/pool.js');
 // GET
 router.get('/', (req, res) => {
     console.log("In GET request");
-    let queryText = 'SELECT * from "tasks"';
+    // sorting in the PostgreSQL after some conversation with my wife where she hinted at this as the solution
+    let queryText = 'SELECT * from "tasks" ORDER BY "id"';
     pool.query(queryText).then((result) => {
         res.send(result.rows);
     }).catch((error) => {
@@ -30,6 +31,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     console.log('req.body', req.body);
     console.log('req.params', req.params);
+    // Setting to toggle the boolean so that tasks can be unchecked
     let queryText = `UPDATE "tasks" SET "completion" = NOT "completion" 
         WHERE "id" = $1;`;
     console.log(queryText);
