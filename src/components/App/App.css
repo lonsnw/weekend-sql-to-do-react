@@ -69,6 +69,11 @@ table.toDoTable tbody td {
   color: #13060E;
 }
 
+/* Doesn't work because of how the table renders. */
+/* table.toDoTable tr:nth-child(odd) {
+  background: #b491a5;
+} */
+
 table.toDoTable thead {
   background: #68224B;
 }
@@ -80,6 +85,13 @@ table.toDoTable thead th {
   text-align: center;
 }
 
+.done {
+  background-color: #F2D8E7;
+}
+
+.notDone {
+  background-color: #956481;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

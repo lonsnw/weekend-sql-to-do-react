@@ -92,17 +92,19 @@ function App () {
             <th>Task</th>
             <th>Delete?</th>
           </thead>
+          <tbody>
           {toDoArray.map((item) => {
-            return <tbody>
-            <tr key={item.id}>
+            // adding conditional class to indicate more obviously while tasks are complete
+            // resource: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+            return <tr key={item.id} className={item.completion ? "done" : "notDone"}>
             <td><input type="checkbox" onClick={(e) => {handleChange(e); updateTask(item.id)}} checked={item.completion}/></td>
             <td className="task">{item.task}</td> 
             {/* Got help on how to do the button here: https://react.school/ui/button */}
             <td><button onClick={() => deleteTask(item.id)}>Delete</button></td>
             </tr>
+            })
+          }
           </tbody>
-          })
-        }
         </table>
     </div>
   );
