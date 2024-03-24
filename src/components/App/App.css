@@ -17,6 +17,67 @@
   font-size: large;
 }
 
+#addTasks {
+  margin: 10px auto 10px auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+html {
+  background-color: #b1d0e5;
+}
+
+header {
+  text-align: center;
+  text-decoration: underline;
+  color: #68224B;
+}
+
+form {
+  background-color: #F2D8E7;
+  padding: 20px;
+  border: 2px double #68224B;
+  border-radius: 10cqb;
+}
+
+input {
+  width: 75%;
+  background-color: #EBC5DC;
+}
+
+ /* Table styling */
+ /* Used https://divtable.com/table-styler/ to help */
+table.toDoTable {
+  border: 1px solid #13060E;
+  border-radius: 10cqb;
+  padding: 3.5cqb;
+  background-color: #F2D8E7;
+  width: 85%;
+  margin: auto;
+}
+
+table.toDoTable td, table.toDoTable th {
+  border: 1px solid #3D89BD;
+  padding: 4px 4px;
+}
+
+table.toDoTable tbody td {
+  font-size: 16px;
+  color: #13060E;
+}
+
+table.toDoTable thead {
+  background: #68224B;
+}
+
+table.toDoTable thead th {
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
