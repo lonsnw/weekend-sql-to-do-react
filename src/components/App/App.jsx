@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function App () {
   const [task, setTask] = useState('');
-  const [completion, setCompletion] = ('');
+  const [completion, setCompletion] = useState('');
   const [toDoArray, setToDoArray] = useState([]);
   
   // TO DO: GET to call tasks
@@ -39,6 +39,7 @@ function App () {
   }
 
   const deleteTask = (taskId) => {
+  // TO DO: Delete a task
     axios.delete(`/api/todo/${taskId}`).then((response) => {
       fetchTasks();
     }).catch((error) => {
@@ -46,6 +47,8 @@ function App () {
       alert('Something went wrong deleting your task');
     });
   }
+
+  // TO DO: Update a task's status
 
   return (
     <div>
@@ -56,19 +59,31 @@ function App () {
         <input id="task-input" value={task} onChange={e => setTask(e.target.value)} />
         <label htmlFor="completion-input">Complete?</label>
         <input id="completion-input" value={completion} onChange={e => setCompletion(e.target.value)} />
+        <button type="submit">Submit</button>
       </form>
       <p>
         New task: {task}
       </p>
-      {/* TO DO: list of tasks with task completion update (checkbox?) and delete button for removing */}
-      {toDoArray.map((item) => {
-        return <div key={item.id}>
-          <div className="completion"> {item.completion}</div>
-          <div className="task">{item.task}</div> 
-          <div><button onClick={deleteTask}>Delete</button></div>
-        </div>
-      })
-      }
+      <Table>
+          <Table.Head>
+            <Table.HeadCell>Complete?</Table.HeadCell>
+            <Table.HeadCell>Task</Table.HeadCell>
+            <Table.HeadCell>Delete</Table.HeadCell>
+          </Table.Head>
+          <Table.Body>
+          {/* TO DO: list of tasks with task completion update (checkbox?) and delete button for removing */}
+          {toDoArray.map((item) => { 
+            return <Table.Row key={item.id}>
+              <Table.Cell className="completion"> {item.completion}</Table.Cell>
+              <Table.Cell className="task">{item.task}</Table.Cell> 
+              {/* Got help on how to do the button here: https://react.school/ui/button */}
+              <Table.Cell><button onClick={() => deleteTask(item.id)}>Delete</button></Table.Cell>
+            </Table.Row>
+            })
+            }
+          </Table.Body>
+
+      </Table>
     </div>
   );
 
