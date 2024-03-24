@@ -60,7 +60,7 @@ function App () {
 
   return (
     <div>
-      <h1>TO DO APP</h1>
+      <h1>let's get stuff done</h1>
       {/* TO DO: form for inputting tasks */}
       <form onSubmit={addTask}>
         <label htmlFor="task-input">Task:</label>

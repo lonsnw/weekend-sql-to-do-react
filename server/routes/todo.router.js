@@ -27,6 +27,17 @@ router.post('/', (req, res) => {
 });
 
 // PUT
+router.put('/:id', (req, res) => {
+    console.log('req.body', req.body);
+    console.log('req.params', req.params);
+    let queryText = `UPDATE "tasks" SET "completion" = true WHERE "id" = $1;`;
+    pool.query(queryText, [req.params.id]).then(() => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.error('Error in PUT /tasks/:id', error);
+        res.sendStatus(500);
+    });
+});
 
 // DELETE
 router.delete('/:id', (req, res) => {
