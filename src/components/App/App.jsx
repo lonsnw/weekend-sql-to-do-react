@@ -55,12 +55,13 @@ function App () {
     });
   }
 
-  // TO DO: Update a task's status
+  // Setting up checkbox
   const handleChange = (e) => {
     setCompletion(e.target.checked);
     console.log(e.target.id)
   }
 
+  // TO DO: Update a task's status
   const updateTask = (taskId) => {
     axios.put(`/api/todo/${taskId}`).then((response) => {
       fetchTasks();
@@ -94,7 +95,7 @@ function App () {
           {toDoArray.map((item) => {
             return <tbody>
             <tr key={item.id}>
-            <td><input type="checkbox" onClick={(e) => {handleChange(e); updateTask(item.id)}} /></td>
+            <td><input type="checkbox" onClick={(e) => {handleChange(e); updateTask(item.id)}} checked={item.completion}/></td>
             <td className="task">{item.task}</td> 
             {/* Got help on how to do the button here: https://react.school/ui/button */}
             <td><button onClick={() => deleteTask(item.id)}>Delete</button></td>
