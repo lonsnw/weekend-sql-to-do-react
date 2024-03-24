@@ -30,7 +30,9 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     console.log('req.body', req.body);
     console.log('req.params', req.params);
-    let queryText = `UPDATE "tasks" SET "completion" = true WHERE "id" = $1;`;
+    let queryText = `UPDATE "tasks" SET "completion" = 'true' 
+        WHERE "id" = $1;`;
+    console.log(queryText);
     pool.query(queryText, [req.params.id]).then(() => {
         res.sendStatus(200);
     }).catch((error) => {

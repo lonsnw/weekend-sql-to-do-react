@@ -4,8 +4,12 @@ import axios from 'axios';
 
 function App () {
   const [task, setTask] = useState('');
-  const [completion, setCompletion] = useState('');
+  // const [completion, setCompletion] = useState('');
   const [toDoArray, setToDoArray] = useState([]);
+
+  // creating a checkbox to mark task completion
+  // reference: https://www.tutorialspoint.com/how-to-use-checkboxes-in-reactjs 
+  const [completion, setCompletion] = useState(false); 
   
   // TO DO: GET to call tasks
   const fetchTasks = () => {
@@ -49,6 +53,11 @@ function App () {
   }
 
   // TO DO: Update a task's status
+  const handleChange = (e) => {
+    setCompletion(e.target.checked);
+    console.log(e.target.id)
+  }
+
   const updateTask = (taskId) => {
     axios.put(`/api/todo/${taskId}`).then((response) => {
       fetchTasks();
@@ -65,21 +74,22 @@ function App () {
       <form onSubmit={addTask}>
         <label htmlFor="task-input">Task:</label>
         <input id="task-input" value={task} onChange={e => setTask(e.target.value)} />
-        <label htmlFor="completion-input">Complete?</label>
-        <input id="completion-input" value={completion} onChange={e => setCompletion(e.target.value)} />
-        <button type="submit">Submit</button>
+        <br />
+        <button type="submit">Add to list</button>
       </form>
-      <p>
+      {/* <p>
         New task: {task}
-      </p>
+      </p> */}
       {/* TO DO: list of tasks with task completion update (checkbox?) and delete button for removing */}
       {toDoArray.map((item) => {
-        return <tr key={item.id}>
-          <td><button onClick={() => updateTask(item.id)}>Done</button></td>
+        return <table>
+          <tr key={item.id}>
+          <td><input value="test" type="checkbox" onClick={(e) => {handleChange(e); updateTask(item.id)}} /></td>
           <td className="task">{item.task}</td> 
           {/* Got help on how to do the button here: https://react.school/ui/button */}
           <td><button onClick={() => deleteTask(item.id)}>Delete</button></td>
         </tr>
+        </table>
       })
       }
     </div>
