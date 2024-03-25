@@ -19,11 +19,11 @@ This app is not currently deployed.
 
 List with provided content loaded:
 <br />
-<image src=server/public/images/default-loaded.png width=80%>
+<image src=public/images/default-loaded.png width=80%>
 <br />
 When entering a new task:
 <br />
-<image src=server/public/images/task-input.png width=80%>
+<image src=public/images/task-input.png width=80%>
 <br />
 
 ### Prerequisites
