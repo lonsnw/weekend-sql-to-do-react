@@ -24,49 +24,98 @@
 }
 
 html {
-  background-color: #b1d0e5;
+  background-color: #e7eaeb;
 }
 
 header {
   text-align: center;
   text-decoration: underline;
-  color: #68224B;
+  color: #0e292d;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: italic;
 }
 
 form {
-  background-color: #F2D8E7;
+  background-color: #e7eaeb;
   padding: 20px;
-  border: 2px double #68224B;
+  border: 2px double #b7c0c2;
   border-radius: 10cqb;
   width: 85%;
   margin: auto;
+  color: #0e292d;
+  display: flex;
+  align-items: center;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
 }
 
 input {
   width: 65%;
-  padding: 5px;
-  background-color: #EBC5DC;
+  padding: 10px;
+  background-color: #e7eaeb;
+  border: 1px solid #1c1032;
+  border-radius: 10cqb;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  color: #0e292d;
 }
 
- /* Table styling */
- /* Used https://divtable.com/table-styler/ to help */
+input:focus {
+  background-color: #cfd5d6;
+  border: 2px solid #696969;
+  border-radius: 10cqb;
+}
+
+button {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  border: 1px solid #1c1032;
+  border-radius: 10cqb;
+  padding: .5cqb;
+  background-color: #b7c0c2;
+  color: #0e292d;
+}
+
+/* resource: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
+.checkContainer {
+  cursor: pointer;
+}
+
+.checkContainer input {
+  cursor: pointer;
+}
+
+/* resource: https://www.codeproject.com/Questions/5327979/How-can-I-change-checkbox-background-color-when-ch */
+input[type='checkbox'] {
+  accent-color: #0e292d;
+}
+
+/* Table styling */
+/* Used https://divtable.com/table-styler/ to help */
 table.toDoTable {
-  border: 1px solid #13060E;
+  border: 3px solid #0e292d;
   border-radius: 10cqb;
   padding: 3.5cqb;
-  background-color: #F2D8E7;
+  background-color: #e7eaeb;
   width: 85%;
   margin: auto;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 table.toDoTable td, table.toDoTable th {
-  border: 1px solid #3D89BD;
+  border: 1px solid #0e292d;
   padding: 4px 4px;
 }
 
 table.toDoTable tbody td {
   font-size: 16px;
-  color: #13060E;
+  color: #0e292d;
 }
 
 /* Doesn't work because of how the table renders. */
@@ -75,22 +124,23 @@ table.toDoTable tbody td {
 } */
 
 table.toDoTable thead {
-  background: #68224B;
+  background: #40575b;
 }
 
 table.toDoTable thead th {
   font-size: 18px;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #e7eaeb;
   text-align: center;
 }
 
 .done {
-  background-color: #F2D8E7;
+  background-color: #e7eaeb;
 }
 
 .notDone {
-  background-color: #956481;
+  background-color: #b7c0c2;
+  font-weight: 600;
 }
 
 @keyframes App-logo-spin {
