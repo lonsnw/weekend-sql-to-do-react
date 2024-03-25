@@ -150,7 +150,7 @@ function App () {
           </thead>
           <tbody>
           {doneArray.map((item) => {
-            return <tr key={item.id} className={item.completion ? "done" : "notDone"}>
+            return <tr key={item.id} className="done">
             <td className="task">{item.task}</td> 
             <td><button onClick={() => deleteTask(item.id)}>Delete</button></td>
             </tr>
