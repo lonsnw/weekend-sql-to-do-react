@@ -1,4 +1,5 @@
-# LET'S GET STUFF DONE: TO DO APP
+# LET'S GET STUFF DONE: 
+# TO DO APP
 
 ## Description
 
@@ -13,7 +14,7 @@ This is an application that allows the user to create a to do list.  Users can:
 
 The app stores all tasks and their status on a database.  Documentation provides sample content for the database (which is also the checklist for building the app).  The app uses both a checkbox and styling to indicate which tasks are complete and which are incomplete.
 
-This app is not currently deployed.
+This app is not currently deployed.  It was built in response to this assignment: [Assignment Instructions](./INSTRUCTIONS.md).
 
 ## Screen Shot
 
