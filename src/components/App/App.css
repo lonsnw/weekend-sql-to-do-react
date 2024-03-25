@@ -27,13 +27,32 @@ html {
   background-color: #e7eaeb;
 }
 
-header {
+h1 {
   text-align: center;
   text-decoration: underline;
   color: #0e292d;
   font-family: "Titillium Web", sans-serif;
   font-weight: 600;
   font-style: italic;
+}
+
+h2 {
+  text-align: center;
+  text-decoration: underline;
+  color: #0e292d;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  margin-bottom: 0px;
+}
+
+h3 {
+  text-align: center;
+  color: #0e292d;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  margin-top: 0px;
 }
 
 form {
@@ -96,7 +115,7 @@ input[type='checkbox'] {
 
 /* Table styling */
 /* Used https://divtable.com/table-styler/ to help */
-table.toDoTable {
+table {
   border: 3px solid #0e292d;
   border-radius: 10cqb;
   padding: 3.5cqb;
@@ -113,7 +132,7 @@ table.toDoTable td, table.toDoTable th {
   padding: 4px 4px;
 }
 
-table.toDoTable tbody td {
+table tbody td {
   font-size: 16px;
   color: #0e292d;
 }
@@ -123,11 +142,11 @@ table.toDoTable tbody td {
   background: #b491a5;
 } */
 
-table.toDoTable thead {
+table thead {
   background: #40575b;
 }
 
-table.toDoTable thead th {
+table thead th {
   font-size: 18px;
   font-weight: bold;
   color: #e7eaeb;

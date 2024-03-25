@@ -5,6 +5,7 @@ import axios from 'axios';
 function App () {
   const [task, setTask] = useState('');
   const [toDoArray, setToDoArray] = useState([]);
+  const [doneArray, setDoneArray] = useState([]);
 
   // creating a checkbox to mark task completion
   // reference: https://www.tutorialspoint.com/how-to-use-checkboxes-in-reactjs 
@@ -24,9 +25,21 @@ function App () {
       alert('Something went wrong loading your tasks!')
     });
   }
+
+  const fetchDone = () => {
+    axios.get('/api/todo/move').then((response) => {
+      console.log('Data:', response.data);
+      setDoneArray(response.data);
+    }).catch((error) => {
+      console.error(error);
+      alert('Something went wrong loading your completed tasks!')
+    });
+  }
+
   // TO DO: on load, call fetchTasks() function
   useEffect(() => {
     fetchTasks();
+    fetchDone();
   }, []);
     
   const addTask = (evt) => {
@@ -46,7 +59,14 @@ function App () {
   }
 
   const deleteTask = (taskId) => {
-  // TO DO: Delete a task
+    // STRETCH: Delete task from one table and move it to another
+    axios.put(`/api/todo/move/${taskId}`).then((response) => {
+      fetchTasks();
+    }).catch((error) => {
+      console.error('Error in PUT', error);
+      alert('Something went wrong moving your task');
+    });
+    // TO DO: Delete a task
     axios.delete(`/api/todo/${taskId}`).then((response) => {
       fetchTasks();
     }).catch((error) => {
@@ -101,6 +121,21 @@ function App () {
             <td className="task">{item.task}</td> 
             {/* Got help on how to do the button here: https://react.school/ui/button */}
             <td><button onClick={() => deleteTask(item.id)}>Delete</button></td>
+            </tr>
+            })
+          }
+          </tbody>
+        </table>
+        <h2>look at you go!</h2>
+        <h3>here's what you've already done</h3>
+        <table className="doneTable">
+          <thead>
+            <th>Task</th>
+          </thead>
+          <tbody>
+          {doneArray.map((item) => {
+            return <tr key={item.id} className={item.completion ? "done" : "notDone"}>
+            <td className="task">{item.task}</td> 
             </tr>
             })
           }

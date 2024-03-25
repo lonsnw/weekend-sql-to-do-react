@@ -43,10 +43,40 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// MOVE PUT
+router.put('/move/:id', (req, res) => {
+    console.log('req.body', req.body);
+    console.log('req.params', req.params);
+    // move the row from one table to the other
+    let queryText = `INSERT INTO "finished"
+    SELECT *
+    FROM "tasks"
+    WHERE "id" = $1;`;
+    console.log(queryText);
+    pool.query(queryText, [req.params.id]).then(() => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.error('Error in PUT /tasks/move/:id', error);
+        res.sendStatus(500);
+    });
+});
+
+// MOVE GET
+router.get('/move/', (req, res) => {
+    console.log("In GET request for completed tasks");
+    let queryText = 'SELECT * from "finished" ORDER BY "id"';
+    pool.query(queryText).then((result) => {
+        res.send(result.rows);
+    }).catch((error) => {
+        console.error(error);
+        res.sendStatus(500);
+    })
+});
+
 // DELETE
 router.delete('/:id', (req, res) => {
     console.log('req.params', req.params);
-    let queryText = 'DELETE FROM "tasks" WHERE "id" = $1;';
+    let queryText = `DELETE FROM "tasks" WHERE "id" = $1;`;
     console.log(queryText);
     pool.query(queryText, [req.params.id]).then(() => {
         res.sendStatus(200);

@@ -29,3 +29,5 @@ VALUES
 ('Create a DELETE route in the todo.router.js file to remove task from the database', FALSE),
 ('Test the DELETE route with Postman', FALSE),
 ('Update styling', FALSE);
+
+CREATE TABLE "finished" AS TABLE "tasks" WITH NO DATA;
