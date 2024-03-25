@@ -1,5 +1,5 @@
-# LET'S GET STUFF DONE: 
-# TO DO APP
+# <center> LET'S GET STUFF DONE </center>
+### <center> TO DO APP </center>
 
 ## Description
 
@@ -20,14 +20,14 @@ This app is not currently deployed.  It was built in response to this assignment
 
 List with provided content loaded:
 <br />
-<image src=public/images/default-loaded.png width=80%>
+<center><image src=public/images/default-loaded.png width=80%></center>
 <br />
 When entering a new task:
 <br />
-<image src=public/images/task-input.png width=80%>
+<center><image src=public/images/task-input.png width=80%></center>
 <br />
 
-### Prerequisites
+## Prerequisites
 
 - [Node.js](https://nodejs.org/en/)
 - [Postgres](https://www.postgresql.org/download/)
@@ -67,6 +67,9 @@ I also want to be able to add tasks to the list, in case I forgot to populate th
 - Express
 - React
 - Node
+
+## Documentation
+This documentation was built following a [provided template](https://github.com/PrimeAcademy/readme-template/blob/main/README.md).   It has been edited for style,  consistency, and to provide all relevant details.
 
 ## Support
 If you have suggestions or issues, please contact me.
