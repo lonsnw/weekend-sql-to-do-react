@@ -1,4 +1,4 @@
-# FLASHCARD CALCULATOR
+# LET'S GET STUFF DONE: TO DO APP
 
 ## Description
 
