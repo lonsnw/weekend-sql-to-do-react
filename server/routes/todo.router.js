@@ -73,7 +73,7 @@ router.get('/move/', (req, res) => {
     })
 });
 
-// DELETE
+// ARCHIVE (DELETE)
 router.delete('/:id', (req, res) => {
     console.log('req.params', req.params);
     let queryText = `DELETE FROM "tasks" WHERE "id" = $1;`;
@@ -86,5 +86,17 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+// DELETE
+router.delete('/move/:id', (req, res) => {
+    console.log('req.params', req.params);
+    let queryText = `DELETE FROM "finished" WHERE "id" = $1;`;
+    console.log(queryText);
+    pool.query(queryText, [req.params.id]).then(() => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.error('Error in DELETE /tasks/move/:id', error);
+        res.sendStatus(500);
+    });
+});
 
 module.exports = router;

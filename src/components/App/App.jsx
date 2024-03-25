@@ -49,6 +49,7 @@ function App () {
     const dataToSend = { task: task, completion: completion };
     axios.post('/api/todo', dataToSend).then((response) => {
       fetchTasks();
+      fetchDone();
       // also clear fields
       setTask('');
       setCompletion('');
@@ -58,10 +59,11 @@ function App () {
     })
   }
 
-  const deleteTask = (taskId) => {
+  const archiveTask = (taskId) => {
     // STRETCH: Delete task from one table and move it to another
     axios.put(`/api/todo/move/${taskId}`).then((response) => {
       fetchTasks();
+      fetchDone();
     }).catch((error) => {
       console.error('Error in PUT', error);
       alert('Something went wrong moving your task');
@@ -69,6 +71,18 @@ function App () {
     // TO DO: Delete a task
     axios.delete(`/api/todo/${taskId}`).then((response) => {
       fetchTasks();
+      fetchDone();
+    }).catch((error) => {
+      console.error('Error in DELETE', error);
+      alert('Something went wrong archiving your task');
+    });
+  }
+
+  const deleteTask = (taskId) => {
+    // STRETCH: Delete task from completed task list
+    axios.delete(`/api/todo/move/${taskId}`).then((response) => {
+      fetchTasks();
+      fetchDone();
     }).catch((error) => {
       console.error('Error in DELETE', error);
       alert('Something went wrong deleting your task');
@@ -85,6 +99,7 @@ function App () {
   const updateTask = (taskId) => {
     axios.put(`/api/todo/${taskId}`).then((response) => {
       fetchTasks();
+      fetchDone();
     }).catch((error) => {
       console.error('Error in PUT', error);
       alert('Something went wrong updating your task');
@@ -110,7 +125,7 @@ function App () {
           <thead>
             <th>✔</th>
             <th>Task</th>
-            <th>Delete?</th>
+            <th>📂</th>
           </thead>
           <tbody>
           {toDoArray.map((item) => {
@@ -120,7 +135,7 @@ function App () {
             <td className="checkContainer"><input type="checkbox" onClick={(e) => {handleChange(e); updateTask(item.id)}} checked={item.completion}/><span className="checkmark"></span></td>
             <td className="task">{item.task}</td> 
             {/* Got help on how to do the button here: https://react.school/ui/button */}
-            <td><button onClick={() => deleteTask(item.id)}>Delete</button></td>
+            <td><button onClick={() => archiveTask(item.id)}>Archive</button></td>
             </tr>
             })
           }
@@ -131,11 +146,13 @@ function App () {
         <table className="doneTable">
           <thead>
             <th>Task</th>
+            <th>⊘</th>
           </thead>
           <tbody>
           {doneArray.map((item) => {
             return <tr key={item.id} className={item.completion ? "done" : "notDone"}>
             <td className="task">{item.task}</td> 
+            <td><button onClick={() => deleteTask(item.id)}>Delete</button></td>
             </tr>
             })
           }
