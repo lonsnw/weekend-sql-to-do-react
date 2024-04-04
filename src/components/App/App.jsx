@@ -4,6 +4,7 @@ import axios from 'axios';
 import ToDoList from '../ToDoList/ToDoList.jsx';
 import Header from '../Header/Header.jsx';
 import DoneList from '../DoneList/DoneList.jsx';
+import ToDoForm from '../ToDoForm/ToDoForm.jsx';
 
 function App () {
   const [task, setTask] = useState('');
@@ -44,23 +45,6 @@ function App () {
     fetchTasks();
     fetchDone();
   }, []);
-    
-  const addTask = (evt) => {
-    evt.preventDefault();
-    console.log(`This is your new task: ${task}; its completion status is ${completion}`);
-    // TO DO: POST to add task to database
-    const dataToSend = { task: task, completion: completion };
-    axios.post('/api/todo', dataToSend).then((response) => {
-      fetchTasks();
-      fetchDone();
-      // also clear fields
-      setTask('');
-      setCompletion('');
-    }).catch((error) => {
-      console.error(error);
-      alert('Something went wrong saving your new task!');
-    })
-  }
 
   return (
     <div>
@@ -68,11 +52,7 @@ function App () {
         <Header />
       </header>
       {/* TO DO: form for inputting tasks */}
-      <form id="addTasks" onSubmit={addTask}>
-        <label htmlFor="task-input">Task:</label>
-        <input id="task-input" value={task} onChange={e => setTask(e.target.value)} />
-        <button type="submit">Add to list</button>
-      </form>
+      <ToDoForm task={task} setTask={setTask} completion={completion} setCompletion={setCompletion} fetchDone={fetchDone} fetchTasks={fetchTasks}/>
       {/* <p>
         New task: {task}
       </p> */}
