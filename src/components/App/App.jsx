@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios'; 
+import Button from '@mui/material/Button';
+import { createTheme } from '@mui/material/styles';
+import Switch from '@mui/material/Switch';
 
 function App () {
   const [task, setTask] = useState('');
@@ -106,6 +109,27 @@ function App () {
     });
   }
 
+  // ADDING COLOR PALETTE USING MUI
+  const theme = createTheme({
+    palette: {
+      primary: {
+        light: '#66787b',
+        main: '#40575b',
+        dark: '#2c3c3f',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#493f5b',
+        main: '#1c1032',
+        dark: '#130b23',
+        contrastText: '#000',
+      },
+    },
+  });
+
+  // TURNING CHECKBOX INTO MUI SWITCH
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
   return (
     <div>
       <header>
@@ -132,10 +156,10 @@ function App () {
             // adding conditional class to indicate more obviously while tasks are complete
             // resource: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
             return <tr key={item.id} className={item.completion ? "done" : "notDone"}>
-            <td className="checkContainer"><input type="checkbox" onClick={(e) => {handleChange(e); updateTask(item.id)}} checked={item.completion}/><span className="checkmark"></span></td>
+            <td className="checkContainer"><Switch {...label} onChange={(e) => {handleChange(e); updateTask(item.id)}} checked={item.completion} /><span className="checkmark"></span></td>
             <td className="task">{item.task}</td> 
             {/* Got help on how to do the button here: https://react.school/ui/button */}
-            <td><button onClick={() => archiveTask(item.id)}>Archive</button></td>
+            <td><Button variant="contained" color="primary" onClick={() => archiveTask(item.id)}>Archive</Button></td>
             </tr>
             })
           }
@@ -152,7 +176,7 @@ function App () {
           {doneArray.map((item) => {
             return <tr key={item.id} className="done">
             <td className="task">{item.task}</td> 
-            <td><button onClick={() => deleteTask(item.id)}>Delete</button></td>
+            <td><Button variant="outlined" color="secondary" onClick={() => deleteTask(item.id)}>Delete</Button></td>
             </tr>
             })
           }
