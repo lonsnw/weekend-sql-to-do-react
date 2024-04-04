@@ -15,8 +15,10 @@ function DoneList ({doneArray, fetchDone, fetchTasks}) {
     return (
     <table className="doneTable">
         <thead>
-          <th>Task</th>
-          <th>⊘</th>
+          <tr>
+            <th>Task</th>
+            <th>⊘</th>
+          </tr>
         </thead>
         <tbody>
         {doneArray.map((item) => {

@@ -40,16 +40,18 @@ function ToDoList ({toDoArray, setCompletion, fetchDone, fetchTasks}) {
     return (
         <table className="toDoTable">
           <thead>
-            <th>✔</th>
-            <th>Task</th>
-            <th>📂</th>
+            <tr>
+              <th>✔</th>
+              <th>Task</th>
+              <th>📂</th>
+            </tr>
           </thead>
           <tbody>
           {toDoArray.map((item) => {
             // adding conditional class to indicate more obviously while tasks are complete
             // resource: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
             return <tr key={item.id} className={item.completion ? "done" : "notDone"}>
-            <td className="checkContainer"><input type="checkbox" onClick={(e) => {handleChange(e); updateTask(item.id)}} checked={item.completion}/><span className="checkmark"></span></td>
+            <td className="checkContainer"><input type="checkbox" onChange={(e) => {handleChange(e); updateTask(item.id)}} checked={item.completion}/><span className="checkmark"></span></td>
             <td className="task">{item.task}</td> 
             {/* Got help on how to do the button here: https://react.school/ui/button */}
             <td><button onClick={() => archiveTask(item.id)}>Archive</button></td>
